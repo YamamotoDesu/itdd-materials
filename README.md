@@ -10,3 +10,22 @@ Each edition has its own branch, named `editions/[EDITION]`. The default branch 
 | --------------------------------------------------------------------------------- |:-------:|:------------:|
 | [editions/2.0](https://github.com/raywenderlich/itdd-materials/tree/editions/2.0) | 2.0     | 2022-01-19   |
 | [editions/1.0](https://github.com/raywenderlich/itdd-materials/tree/editions/1.0) | 1.0     | 2019-10-02   |
+
+### Getting started
+```swift
+import XCTest
+
+class CashRegister {
+  
+}
+
+class CashRegisterTests: XCTestCase {
+    // 1
+    func testInit_createsCashRegister() {
+        // 2
+        XCTAssertNotNil(CashRegister())
+    }
+}
+
+CashRegisterTests.defaultTestSuite.run()
+```
