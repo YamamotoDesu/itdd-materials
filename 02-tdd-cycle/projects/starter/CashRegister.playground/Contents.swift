@@ -31,3 +31,18 @@
 /// THE SOFTWARE.
 
 import XCTest
+
+class CashRegister {
+  
+}
+
+class CashRegisterTests: XCTestCase {
+    // 1
+    func testInit_createsCashRegister() {
+        // 2
+        XCTAssertNotNil(CashRegister())
+    }
+}
+
+CashRegisterTests.defaultTestSuite.run()
+
