@@ -63,3 +63,59 @@ class CashRegisterTests: XCTestCase {
 CashRegisterTests.defaultTestSuite.run()
 
 ```
+
+### TDDing addItem
+
+```swift
+import XCTest
+
+class CashRegister {
+    var availableFunds: Decimal
+    var transactionTotal: Decimal = 0
+
+    init(availableFunds: Decimal) {
+      self.availableFunds = availableFunds
+    }
+
+    func addItem(_ cost: Decimal) {
+      transactionTotal = cost
+    }
+}
+
+class CashRegisterTests: XCTestCase {
+    var availableFunds: Decimal!
+    var sut: CashRegister!
+
+    // 1
+    override func setUp() {
+      super.setUp()
+      availableFunds = 100
+      sut = CashRegister(availableFunds: availableFunds)
+    }
+
+    // 2
+    override func tearDown() {
+      availableFunds = nil
+      sut = nil
+      super.tearDown()
+    }
+
+
+    func testInitAvailableFunds_setsAvailableFunds() {
+      // then
+      XCTAssertEqual(sut.availableFunds, availableFunds)
+    }
+
+    func testAddItem_oneItem_addsCostToTransactionTotal() {
+      // given
+      let itemCost = Decimal(42)
+      
+      // when
+      sut.addItem(itemCost)
+      
+      // then
+      XCTAssertEqual(sut.transactionTotal, itemCost)
+    }
+
+}
+```
