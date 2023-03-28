@@ -391,7 +391,7 @@ StepCountController.swift
   }
  ```
 
-### Using the host app
+### [Using the host app](https://github.com/YamamotoDesu/itdd-materials/commit/3f9c92bc73a4c356e87162d15e930f32c5aff56b)
 
 StepCountControllerTests.swift
 ```swift
