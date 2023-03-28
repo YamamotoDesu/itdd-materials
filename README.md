@@ -365,3 +365,6 @@ StepCountController.swift
     updateUI()
   }
 ```
+
+<img width="300" alt="スクリーンショット 2023-03-28 10 58 18" src="https://user-images.githubusercontent.com/47273077/228107158-53e84337-f42f-4651-83b2-1b7848622656.png">
+
