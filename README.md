@@ -269,3 +269,99 @@ class DataModel {
 
 }
 ```
+
+### [Testing Errors]()
+AppModelTests
+```swift
+import XCTest
+@testable import FitNess
+
+class AppModelTests: XCTestCase {
+  //swiftlint:disable implicitly_unwrapped_optional
+  var sut: AppModel!
+
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    sut = AppModel()
+  }
+
+  override func tearDownWithError() throws {
+    sut = nil
+    try super.tearDownWithError()
+  }
+
+  // MARK: - Given
+  func givenGoalSet() {
+    sut.dataModel.goal = 1000
+  }
+
+  // MARK: - Lifecycle
+  func testAppModel_whenInitialized_isInNotStartedState() {
+    let initialState = sut.appState
+    XCTAssertEqual(initialState, AppState.notStarted)
+  }
+
+  // MARK: - Start
+  func testModelWithNoGoal_whenStarted_throwsError() {
+    XCTAssertThrowsError(try sut.start())
+  }
+  
+  func testAppModel_whenStarted_isInInProgressState() {
+    // given
+    givenGoalSet()
+    
+    // when started
+    try? sut.start()
+
+    // then it is in inProgress
+    let observedState = sut.appState
+    XCTAssertEqual(observedState, .inProgress)
+  }
+  
+
+  
+  func testStart_withGoalSet_throwsError() {
+    // given
+    givenGoalSet()
+    
+    // then
+    XCTAssertNoThrow(try sut.start())
+  }
+}
+```
+
+AppModel.swift
+```swift
+import Foundation
+
+class AppModel {
+  static let instance = AppModel()
+  let dataModel = DataModel()
+
+  var appState: AppState = .notStarted
+
+  func start() throws {
+    
+    guard dataModel.goal != nil else {
+      throw AppError.goalNotSet
+    }
+    
+    appState = .inProgress
+  }
+}
+```
+
+StepCountController.swift
+```swift
+  // MARK: - UI Actions
+
+  @IBAction func startStopPause(_ sender: Any?) {
+    do {
+      try AppModel.instance.start()
+    } catch {
+      showNeedGoalAlert()
+    }
+
+    updateUI()
+  }
+```
