@@ -391,3 +391,43 @@ StepCountController.swift
   }
  ```
 
+### Using the host app
+
+StepCountControllerTests.swift
+```swift
+func testChaseView_whenLoaded_isNotStarted() {
+  // when loaded, then
+  let chaseView = sut.chaseView
+  XCTAssertEqual(chaseView?.state, .notStarted)
+}
+```
+
+Test Classes/ViewControllers.swift(under FitNessTests target)
+```swift
+import UIKit
+@testable import FitNess
+
+func getRootViewController() -> RootViewController {
+  guard let controller =
+    (UIApplication.shared.connectedScenes.first as? UIWindowScene)?
+    .windows
+    .first?
+    .rootViewController as? RootViewController else {
+    assert(false, "Did not a get RootViewController")
+  }
+  return controller
+}
+```
+
+Test Extensions/RootViewController+Tests.swift(under FitNessTests target)
+```swift
+import UIKit
+@testable import FitNess
+
+extension RootViewController {
+  var stepController: StepCountController {
+    return children.first { $0 is StepCountController }
+      as! StepCountController
+  }
+}
+```
