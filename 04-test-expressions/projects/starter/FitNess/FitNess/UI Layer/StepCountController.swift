@@ -101,6 +101,7 @@ class StepCountController: UIViewController {
 extension StepCountController {
   func updateGoal(newGoal: Int) {
     // update this function
+    AppModel.instance.dataModel.goal = newGoal
   }
 
   private func showNeedGoalAlert() {
