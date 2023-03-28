@@ -23,6 +23,8 @@
 		4CCF44162706846400DD29AB /* Nessie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF44152706846400DD29AB /* Nessie.swift */; };
 		4CCF44182706849B00DD29AB /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF44172706849B00DD29AB /* AppError.swift */; };
 		7BC6B63529D2732000E02626 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6B63429D2732000E02626 /* DataModelTests.swift */; };
+		7BC6B63829D3ABA000E02626 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6B63729D3ABA000E02626 /* ViewControllers.swift */; };
+		7BC6B63B29D3AE3700E02626 /* RootViewController+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6B63A29D3AE3700E02626 /* RootViewController+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		4CCF44152706846400DD29AB /* Nessie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nessie.swift; sourceTree = "<group>"; };
 		4CCF44172706849B00DD29AB /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		7BC6B63429D2732000E02626 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
+		7BC6B63729D3ABA000E02626 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
+		7BC6B63A29D3AE3700E02626 /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 		4CCF44032705277700DD29AB /* FitNessTests */ = {
 			isa = PBXGroup;
 			children = (
+				7BC6B63929D3AE1700E02626 /* Test Extensions */,
+				7BC6B63629D3AB7F00E02626 /* Test Classes */,
 				4CCF440F27052F9C00DD29AB /* Cases */,
 			);
 			path = FitNessTests;
@@ -196,6 +202,22 @@
 				7BC6B63429D2732000E02626 /* DataModelTests.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		7BC6B63629D3AB7F00E02626 /* Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7BC6B63729D3ABA000E02626 /* ViewControllers.swift */,
+			);
+			path = "Test Classes";
+			sourceTree = "<group>";
+		};
+		7BC6B63929D3AE1700E02626 /* Test Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7BC6B63A29D3AE3700E02626 /* RootViewController+Tests.swift */,
+			);
+			path = "Test Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,8 +361,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BC6B63B29D3AE3700E02626 /* RootViewController+Tests.swift in Sources */,
 				7BC6B63529D2732000E02626 /* DataModelTests.swift in Sources */,
 				4CCF440E27052F8000DD29AB /* StepCountControllerTests.swift in Sources */,
+				7BC6B63829D3ABA000E02626 /* ViewControllers.swift in Sources */,
 				4CCF440C2705284300DD29AB /* AppModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

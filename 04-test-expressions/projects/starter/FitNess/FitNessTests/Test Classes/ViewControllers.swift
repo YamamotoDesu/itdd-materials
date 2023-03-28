@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,76 +30,18 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import XCTest
+import UIKit
 @testable import FitNess
 
-class StepCountControllerTests: XCTestCase {
-  //swiftlint:disable implicitly_unwrapped_optional
-  var sut: StepCountController!
-
-  override func setUpWithError() throws {
-    try super.setUpWithError()
-    sut = StepCountController()
-  }
-
-  override func tearDownWithError() throws {
-    sut = nil
-    AppModel.instance.dataModel.goal = nil
-    try super.tearDownWithError()
-  }
-
-  // MARK: - Given
-
-  // MARK: - When
-  private func whenStartStopPauseCalled() {
-    sut.startStopPause(nil)
-  }
-
-  // MARK: - Initial State
-
-  func testController_whenCreated_buttonLabelIsStart() {
-    // given
-    sut.viewDidLoad()
-
-    // then
-    let text = sut.startButton.title(for: .normal)
-    XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
-  }
-
-  // MARK: - Goal
-
-  // MARK: - In Progress
-
-  func testController_whenStartTapped_appIsInProgress() {
-    // when
-    whenStartStopPauseCalled()
-
-    // then
-    let state = AppModel.instance.appState
-    XCTAssertEqual(state, AppState.inProgress)
-  }
-
-  func testController_whenStartTapped_buttonLabelIsPause() {
-    // when
-    whenStartStopPauseCalled()
-
-    // then
-    let text = sut.startButton.title(for: .normal)
-    XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
-  }
-
-  // MARK: - Chase View
-  func testDataModel_whenGoalUpdate_updatesToNewGoal() {
-    // when
-    sut.updateGoal(newGoal: 50)
-    
-    // then
-    XCTAssertEqual(AppModel.instance.dataModel.goal, 50)
-  }
+func getRootViewController() -> RootViewController {
   
-  func testChaseView_whenLoaded_isNotStarted() {
-    // when loaded, then
-    let chaseView = sut.chaseView
-    XCTAssertEqual(chaseView?.state, .notStarted)
+  guard let controller =
+          (UIApplication.shared.connectedScenes.first as? UIWindowScene)?
+    .windows
+    .first?
+    .rootViewController as? RootViewController else {
+    assert(false, "Did not a get RootViewController")
   }
+  return controller
+          
 }
