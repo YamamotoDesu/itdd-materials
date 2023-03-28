@@ -206,6 +206,6 @@ There are several assert functions in XCTest:
 🖌 Comparison: XCTAssertLessThan, XCTAssertGreaterThan, XCTAssertLessThanOrEqual, XCTAssertGreaterThanOrEqual
 
 🖌 Erroring: XCTAssertThrowsError, XCTAssertNoThrow
-```
+
 Ultimately, any test case can be boiled down to a conditional: (does it meet an expectation or not) so any test assert can be re-composed into a XCTAssertTrue.
-```
+
