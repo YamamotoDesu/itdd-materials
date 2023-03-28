@@ -11,7 +11,7 @@ Each edition has its own branch, named `editions/[EDITION]`. The default branch 
 | [editions/2.0](https://github.com/raywenderlich/itdd-materials/tree/editions/2.0) | 2.0     | 2022-01-19   |
 | [editions/1.0](https://github.com/raywenderlich/itdd-materials/tree/editions/1.0) | 1.0     | 2019-10-02   |
 
-## [2. The TDD Cycle](https://www.kodeco.com/books/ios-test-driven-development-by-tutorials/v2.0/chapters/2-the-tdd-cycle)
+# [2. The TDD Cycle](https://www.kodeco.com/books/ios-test-driven-development-by-tutorials/v2.0/chapters/2-the-tdd-cycle)
 
 ### Getting started
 ```swift
@@ -193,7 +193,7 @@ CashRegisterTests.defaultTestSuite.run()
 
 ```
 
-## [4. Test Expressions](https://www.kodeco.com/books/ios-test-driven-development-by-tutorials/v2.0/chapters/4-test-expressions)
+# [4. Test Expressions](https://www.kodeco.com/books/ios-test-driven-development-by-tutorials/v2.0/chapters/4-test-expressions)
 ### Assert methods
 There are several assert functions in XCTest:
 
@@ -367,4 +367,10 @@ StepCountController.swift
 ```
 
 <img width="300" alt="スクリーンショット 2023-03-28 10 58 18" src="https://user-images.githubusercontent.com/47273077/228107158-53e84337-f42f-4651-83b2-1b7848622656.png">
+
+
+## View controller testing
+### Functional view controller testing
+The important thing when testing view controllers is to not test the views and controls directly. This is better done using UI automation tests. Here, the goal is to check the logic and state of the view controller.
+
 
