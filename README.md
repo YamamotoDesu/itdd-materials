@@ -370,7 +370,7 @@ StepCountController.swift
 
 
 ## View controller testing
-### Functional view controller testing
+### [Functional view controller testing](https://github.com/YamamotoDesu/itdd-materials/commit/5ddbcb4f9fdec6631ed4f3bf3f6a9707c7d0e64a)
 The important thing when testing view controllers is to not test the views and controls directly. This is better done using UI automation tests. Here, the goal is to check the logic and state of the view controller.
 ```swift
   func testDataModel_whenGoalUpdate_updatesToNewGoal() {
