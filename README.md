@@ -372,5 +372,22 @@ StepCountController.swift
 ## View controller testing
 ### Functional view controller testing
 The important thing when testing view controllers is to not test the views and controls directly. This is better done using UI automation tests. Here, the goal is to check the logic and state of the view controller.
+```swift
+  func testDataModel_whenGoalUpdate_updatesToNewGoal() {
+    // when
+    sut.updateGoal(newGoal: 50)
+    
+    // then
+    XCTAssertEqual(AppModel.instance.dataModel.goal, 50)
+  }
+}
+```
 
+StepCountController.swift
+```swift
+  func updateGoal(newGoal: Int) {
+    // update this function
+    AppModel.instance.dataModel.goal = newGoal
+  }
+ ```
 
