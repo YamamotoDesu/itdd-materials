@@ -209,3 +209,63 @@ There are several assert functions in XCTest:
 
 Ultimately, any test case can be boiled down to a conditional: (does it meet an expectation or not) so any test assert can be re-composed into a XCTAssertTrue.
 
+### Asserting true and false
+DataModelTests.swift
+```swift
+@testable import FitNess
+import XCTest
+
+final class DataModelTests: XCTestCase {
+  
+  var sut: DataModel!
+  
+  override func setUpWithError() throws {
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+    try super.setUpWithError()
+    sut = DataModel()
+  }
+  
+  override func tearDownWithError() throws {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    sut = nil
+    try super.tearDownWithError()
+  }
+
+  // MARK: - Goal
+  func testModel_whenStarted_goalIsNotReached() {
+    XCTAssertFalse(sut.goalReached, "goalReached should be false when the model is created")
+  }
+  
+  func testModel_whenStepsReachGoal_goalIsReached() {
+    
+    // given
+    sut.goal = 1000
+    
+    // when
+    sut.steps = 1000
+
+    // then
+    XCTAssertTrue(sut.goalReached)
+  }
+}
+```
+
+DataModel.swift
+```swift
+import Foundation
+
+// Add the Data Model class here:
+class DataModel {
+  var goalReached: Bool {
+    if let goal = goal,
+       steps >= goal {
+      return true
+    }
+    return false
+  }
+  
+  var goal: Int?
+  var steps: Int = 0
+
+}
+```
