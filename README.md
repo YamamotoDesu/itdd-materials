@@ -192,3 +192,20 @@ class CashRegisterTests: XCTestCase {
 CashRegisterTests.defaultTestSuite.run()
 
 ```
+
+## [4. Test Expressions](https://www.kodeco.com/books/ios-test-driven-development-by-tutorials/v2.0/chapters/4-test-expressions)
+### Assert methods
+There are several assert functions in XCTest:
+
+🖌 Equality: XCTAssertEqual, XCTAssertNotEqual  
+
+🖌 Truthiness: XCTAssertTrue, XCTAssertFalse
+
+🖌 Nullability: XCTAssertNil, XCTAssertNotNil
+
+🖌 Comparison: XCTAssertLessThan, XCTAssertGreaterThan, XCTAssertLessThanOrEqual, XCTAssertGreaterThanOrEqual
+
+🖌 Erroring: XCTAssertThrowsError, XCTAssertNoThrow
+
+Ultimately, any test case can be boiled down to a conditional: (does it meet an expectation or not) so any test assert can be re-composed into a XCTAssertTrue.
+
