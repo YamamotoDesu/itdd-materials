@@ -209,7 +209,7 @@ There are several assert functions in XCTest:
 
 Ultimately, any test case can be boiled down to a conditional: (does it meet an expectation or not) so any test assert can be re-composed into a XCTAssertTrue.
 
-### Asserting true and false
+### [Asserting true and false](https://github.com/YamamotoDesu/itdd-materials/commit/8e5d9bdccb6fad48554e91dc88b5821d52f7b7d6)
 DataModelTests.swift
 ```swift
 @testable import FitNess
