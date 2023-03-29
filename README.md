@@ -524,3 +524,8 @@ There is also an option in the Test action of the scheme to randomize the test o
 ### Code coverage
 ![image](https://user-images.githubusercontent.com/47273077/228415061-6c48360c-9dd6-4270-9623-1ddb2f8c5d9b.png)
 
+### Using test breakpoints
+A good next step is to try out the debugger. In the Breakpoint navigator, click the + all the way at the bottom. Select Test Failure Breakpoint.
+![image](https://user-images.githubusercontent.com/47273077/228424942-a2117682-b047-4f5d-a8b3-5882317b0f8c.png)
+
+## [5. Test Expectations](https://www.kodeco.com/books/ios-test-driven-development-by-tutorials/v2.0/chapters/5-test-expectations)
