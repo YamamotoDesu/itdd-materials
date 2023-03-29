@@ -483,7 +483,7 @@ private func updateChaseView() {
 }
 ```
 
-### [Test ordering matters]()
+### [Test ordering matters](https://github.com/YamamotoDesu/itdd-materials/commit/472456b72146f24a58f84831fce2c6fe7189d26b)
 
 AppModelTests.swift
 ```swift
