@@ -43,6 +43,8 @@ class AppModelTests: XCTestCase {
   }
 
   override func tearDownWithError() throws {
+    AppModel.instance.dataModel.goal = nil
+    AppState.instance.restart()
     sut = nil
     try super.tearDownWithError()
   }
@@ -89,13 +91,23 @@ class AppModelTests: XCTestCase {
     XCTAssertEqual(observedState, .inProgress)
   }
   
-
-  
   func testStart_withGoalSet_throwsError() {
     // given
     givenGoalSet()
     
     // then
     XCTAssertNoThrow(try sut.start())
+  }
+
+  // MARK: - Restart
+  func testAppModel_when_Reset_isInNotStartedState() {
+    // given
+    givenInProgress()
+    
+    // when
+    sut.restart()
+    
+    // then
+    XCTAssertEqual(sut.appState, .notStarted)
   }
 }
