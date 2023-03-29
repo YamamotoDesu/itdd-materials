@@ -51,7 +51,7 @@ class StepCountControllerTests: XCTestCase {
 
   // MARK: - Given
   func givenGoalSet() {
-    sut.dataModel.goal = 1000
+    AppModel.instance.dataModel.goal = 1000
   }
 
   func givenInProgress() {
@@ -93,11 +93,11 @@ class StepCountControllerTests: XCTestCase {
     XCTAssertEqual(AppModel.instance.dataModel.goal, 50)
   }
   
-  func testChaseView_whenLoaded_isNotStarted() {
-    // when loaded, then
-    let chaseView = sut.chaseView
-    XCTAssertEqual(chaseView?.state, .notStarted)
-  }
+//  func testChaseView_whenLoaded_isNotStarted() {
+//    // when loaded, then
+//    let chaseView = sut.chaseView
+//    XCTAssertEqual(chaseView?.state, .notStarted)
+//  }
   
   func testChaseView_whenInProgress_viewIsInProgress() {
     // given

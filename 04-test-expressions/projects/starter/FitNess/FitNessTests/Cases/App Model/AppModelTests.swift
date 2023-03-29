@@ -44,7 +44,7 @@ class AppModelTests: XCTestCase {
 
   override func tearDownWithError() throws {
     AppModel.instance.dataModel.goal = nil
-    AppState.instance.restart()
+    AppModel.instance.restart()
     sut = nil
     try super.tearDownWithError()
   }

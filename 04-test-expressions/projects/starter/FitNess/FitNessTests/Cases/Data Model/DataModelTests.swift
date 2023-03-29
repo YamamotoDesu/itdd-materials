@@ -65,4 +65,9 @@ final class DataModelTests: XCTestCase {
     // then
     XCTAssertTrue(sut.goalReached)
   }
+  
+  // MARK: - Nessie
+  func testModel_whenStarted_userIsNotCaught() {
+    XCTAssertFalse(sut.caught)
+  }
 }
