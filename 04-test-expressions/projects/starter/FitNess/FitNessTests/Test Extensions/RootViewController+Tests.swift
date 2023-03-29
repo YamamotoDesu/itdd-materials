@@ -33,8 +33,8 @@
 import UIKit
 @testable import FitNess
 
-extension RootViewConroller {
+extension RootViewController {
   var stepController: StepCountController {
-    return children.first {　$0 is stepController } as! StepCountController
+    return children.first { $0 is StepCountController } as! StepCountController
   }
 }
