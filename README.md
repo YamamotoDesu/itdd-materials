@@ -431,3 +431,55 @@ extension RootViewController {
   }
 }
 ```
+
+Note: One alternate way of retrieving and testing a view controller can be done as follows: First, get a reference to the storyboard:
+
+let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+Second, get a reference to the view controller:
+
+let stepController = storyboard.instantiateViewcontroller(withIdentifier: "stepController") as! StepCountController
+
+Finally, if needed, you may load the view as follows:
+
+stepController.loadViewIfNeeded()
+
+Following this pattern allows you to instantiate a fresh view controller for each test, and it affords the option to set up and tear down the view controller for each test.
+
+### [Fixing the tests](https://github.com/YamamotoDesu/itdd-materials/commit/a4fcf53ccca5144eb1acbddb0e626f17af9fd386)
+StepCountControllerTests.swift, and replace setUpWithError() with the following:
+```swift
+override func setUpWithError() throws {
+  try super.setUpWithError()
+  let rootController = getRootViewController()
+  sut = rootController.stepController
+}
+```
+
+AppModelTests.swift
+```swift
+func givenInProgress() {
+  givenGoalSet()
+  sut.startStopPause(nil)
+}
+```
+
+StepCountControllerTests.swift
+```swift
+func testChaseView_whenInProgress_viewIsInProgress() {
+  // given
+  givenInProgress()
+
+  // then
+  let chaseView = sut.chaseView
+  XCTAssertEqual(chaseView?.state, .inProgress)
+}
+```
+
+StepCountController.swift
+```swift
+private func updateChaseView() {
+  chaseView.state = AppModel.instance.appState
+}
+```
+
