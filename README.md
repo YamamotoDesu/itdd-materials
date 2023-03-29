@@ -431,3 +431,41 @@ extension RootViewController {
   }
 }
 ```
+
+### [Fixing the tests]()
+StepCountControllerTests.swift, and replace setUpWithError() with the following:
+```swift
+override func setUpWithError() throws {
+  try super.setUpWithError()
+  let rootController = getRootViewController()
+  sut = rootController.stepController
+}
+```
+
+AppModelTests.swift
+```swift
+func givenInProgress() {
+  givenGoalSet()
+  sut.startStopPause(nil)
+}
+```
+
+StepCountControllerTests.swift
+```swift
+func testChaseView_whenInProgress_viewIsInProgress() {
+  // given
+  givenInProgress()
+
+  // then
+  let chaseView = sut.chaseView
+  XCTAssertEqual(chaseView?.state, .inProgress)
+}
+```
+
+StepCountController.swift
+```swift
+private func updateChaseView() {
+  chaseView.state = AppModel.instance.appState
+}
+```
+
