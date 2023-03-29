@@ -483,3 +483,36 @@ private func updateChaseView() {
 }
 ```
 
+### [Test ordering matters]()
+
+AppModelTests.swift
+```swift
+// MARK: - Restart
+func testAppModel_whenReset_isInNotStartedState() {
+  // given
+  givenInProgress()
+
+  // when
+  sut.restart()
+
+  // then
+  XCTAssertEqual(sut.appState, .notStarted)
+}
+```
+
+AppModel.swift
+```swift
+func restart() {
+  appState = .notStarted
+}
+```
+
+StepCountControllerTests.swift
+```swift
+override func tearDownWithError() throws {
+  AppModel.instance.dataModel.goal = nil
+  AppModel.instance.restart()
+  sut.updateUI()
+  try super.tearDownWithError()
+}
+```
