@@ -432,7 +432,7 @@ extension RootViewController {
 }
 ```
 
-### [Fixing the tests]()
+### [Fixing the tests](https://github.com/YamamotoDesu/itdd-materials/commit/a4fcf53ccca5144eb1acbddb0e626f17af9fd386)
 StepCountControllerTests.swift, and replace setUpWithError() with the following:
 ```swift
 override func setUpWithError() throws {
