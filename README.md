@@ -572,3 +572,77 @@ fulfill() is called on the expectation to indicate it has been fulfilled - speci
 
 wait(for:timeout:) causes the test runner to pause until all expectations are fulfilled or the timeout time (in seconds) passes.
 The assertion will not be called until the wait completes.
+
+### Testing for true asynchronicity
+StepCountControllerTests.swift
+```swift
+func testController_whenCaught_buttonLabelIsTryAgain() {
+  // given
+  givenInProgress()
+  let exp = expectation(description: "button title change")
+  let observer = ButtonObserver()
+  observer.observe(sut.startButton, expectation: exp)
+
+  // when
+  whenCaught()
+
+  // then
+  waitForExpectations(timeout: 1)
+  let text = sut.startButton.title(for: .normal)
+  XCTAssertEqual(text, AppState.caught.nextStateButtonLabel)
+}
+
+func testController_whenComplete_buttonLabelIsStartOver() {
+  // given
+  givenInProgress()
+  let exp = expectation(description: "button title change")
+  let observer = ButtonObserver()
+  observer.observe(sut.startButton, expectation: exp)
+
+  // when
+  whenCompleted()
+
+  // then
+  waitForExpectations(timeout: 1)
+  let text = sut.startButton.title(for: .normal)
+  XCTAssertEqual(text, AppState.completed.nextStateButtonLabel)
+}
+
+func whenCaught() {
+  AppModel.instance.setToCaught()
+}
+
+func whenCompleted() {
+  AppModel.instance.setToComplete()
+}
+
+```
+
+ButtonObserver.swift
+```swift
+import XCTest
+
+class ButtonObserver {
+  var token: NSKeyValueObservation?
+
+  func observe(_ button: UIButton, expectation: XCTestExpectation) {
+    token = button
+      .observe(\.titleLabel?.text, options: [.new]) { _, _ in
+        expectation.fulfill()
+      }
+  }
+
+  deinit {
+    token?.invalidate()
+  }
+}
+```
+
+StepCountController.swift:
+```swift
+AppModel.instance.stateChangedCallback = { model in
+  DispatchQueue.main.async {
+    self.updateUI()
+  }
+}
+```
