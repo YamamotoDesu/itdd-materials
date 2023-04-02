@@ -655,3 +655,57 @@ ButtonObserver observes a UIButton for changes to its titleLabel’s text by usi
 
 ## Waiting for notifications
 Building the alert center
+
+AlertCenterTests.swift
+```swift
+class AlertCenterTests: XCTestCase {
+  //swiftlint:disable implicitly_unwrapped_optional
+  var sut: AlertCenter!
+
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    sut = AlertCenter()
+  }
+
+  override func tearDownWithError() throws {
+    sut = nil
+    try super.tearDownWithError()
+  }
+  
+  func testPostOne_generatesANotification() {
+    // given
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: sut,
+      handler: nil)
+    let alert = Alert("this is an alert")
+    
+    // when
+    sut.postAlert(alert: alert)
+    
+    // then
+    wait(for: [exp], timeout: 1)
+  }
+}
+```
+
+AlertCenter.swift
+```swift
+  static var instance = AlertCenter()
+
+  init(center: NotificationCenter = .default) {
+    self.notificationCenter = center
+  }
+
+  // MARK: - Notifications
+  let notificationCenter: NotificationCenter
+
+  func postAlert(alert: Alert) {
+    //stub implementation
+    let notification = Notification(
+      name: AlertNotification.name,
+      object: self)
+    notificationCenter.post(notification)
+  }
+}
+```
