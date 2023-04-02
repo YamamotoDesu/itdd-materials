@@ -640,9 +640,13 @@ class ButtonObserver {
 
 StepCountController.swift:
 ```swift
-AppModel.instance.stateChangedCallback = { model in
-  DispatchQueue.main.async {
-    self.updateUI()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    AppModel.instance.stateChangedCallback = { model in
+      DispatchQueue.main.async {
+        self.updateUI()
+      }
+    }
   }
-}
 ```
