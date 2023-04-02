@@ -529,3 +529,46 @@ A good next step is to try out the debugger. In the Breakpoint navigator, click 
 ![image](https://user-images.githubusercontent.com/47273077/228424942-a2117682-b047-4f5d-a8b3-5882317b0f8c.png)
 
 ## [5. Test Expectations](https://www.kodeco.com/books/ios-test-driven-development-by-tutorials/v2.0/chapters/5-test-expectations)
+### Writing an asynchronous test
+
+AppModelTests.swift
+```swift
+  // MARK: - State Changes
+  func testAppModel_whenStateChanges_executesCallback() {
+    //given
+    givenInProgress()
+    var observedState = AppState.notStarted
+    
+    let expected = expectation(description: "callback happened")
+    sut.stateChangedCallback = { model in
+      observedState = model.appState
+      
+      expected.fulfill()
+    }
+    
+    // when
+    sut.pause()
+    
+    // then
+    wait(for: [expected], timeout: 1)
+    XCTAssertEqual(observedState, .paused)
+  }
+  ```
+  
+AppModel
+```swift
+    var appState: AppState = .notStarted {
+    didSet {
+      stateChangedCallback?(self)
+    }
+  }
+  var stateChangedCallback: ((AppModel) -> Void)?
+```
+
+expectation(description:) is an XCTestCase method that creates an XCTestExpectation object. 
+The description helps identify a failure in the test logs. 
+
+fulfill() is called on the expectation to indicate it has been fulfilled - specifically, the callback has occurred. Here stateChangedCallback will trigger on sut when a state change occurs.
+
+wait(for:timeout:) causes the test runner to pause until all expectations are fulfilled or the timeout time (in seconds) passes.
+The assertion will not be called until the wait completes.
