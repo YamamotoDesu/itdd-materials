@@ -650,3 +650,5 @@ StepCountController.swift:
     }
   }
 ```
+
+ButtonObserver observes a UIButton for changes to its titleLabel’s text by using Key-Value Observing. When the text changes, a callback is made to observeValue(forKeyPath:of:change:context:). 
