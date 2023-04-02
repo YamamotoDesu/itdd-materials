@@ -568,8 +568,7 @@ AppModel
 expectation(description:) is an XCTestCase method that creates an XCTestExpectation object. 
 The description helps identify a failure in the test logs. 
 
-fulfill() is called on the expectation to indicate it has been fulfilled 
-- specifically, the callback has occurred. Here stateChangedCallback will trigger on sut when a state change occurs.
+fulfill() is called on the expectation to indicate it has been fulfilled - specifically, the callback has occurred. Here stateChangedCallback will trigger on sut when a state change occurs.
 
 wait(for:timeout:) causes the test runner to pause until all expectations are fulfilled or the timeout time (in seconds) passes.
 The assertion will not be called until the wait completes.
