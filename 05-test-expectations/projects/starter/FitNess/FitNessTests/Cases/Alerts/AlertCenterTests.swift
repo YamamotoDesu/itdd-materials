@@ -46,4 +46,19 @@ class AlertCenterTests: XCTestCase {
     sut = nil
     try super.tearDownWithError()
   }
+  
+  func testPostOne_generatesANotification() {
+    // given
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: sut,
+      handler: nil)
+    let alert = Alert("this is an alert")
+    
+    // when
+    sut.postAlert(alert: alert)
+    
+    // then
+    wait(for: [exp], timeout: 1)
+  }
 }

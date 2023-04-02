@@ -44,6 +44,10 @@ class AlertCenter {
 
   func postAlert(alert: Alert) {
     //stub implementation
+    let notification = Notification(
+      name: AlertNotification.name,
+      object: self)
+    notificationCenter.post(notification)
   }
 }
 

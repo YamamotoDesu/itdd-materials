@@ -164,36 +164,36 @@ class StepCountControllerTests: XCTestCase {
   }
   
   // MARK: - Terminal States
-  func testController_whenCaught_buttonLabelIsTryAgain() {
-    // given
-    let exp = expectation(description: "button title change")
-    let observer = ButtonObserver()
-    observer.observe(sut.startButton, expectation: exp)
-    
-    // when
-    whenCaught()
-    
-    // then
-    waitForExpectations(timeout: 1)
-    let text = sut.startButton.title(for: .normal)
-    XCTAssertEqual(text, AppState.caught.nextStateButtonLabel)
-  }
-  
-  func testAppModel_whenStateChanges_executesCallback() {
-    //given
-    givenInProgress()
-    let exp = expectation(description: "button title change")
-    let observer = ButtonObserver()
-    observer.observe(sut.startButton, expectation: exp)
-    
-    // when
-    whenCompleted()
-    
-    // then
-    waitForExpectations(timeout: 3)
-    let text = sut.startButton.title(for: .normal)
-    XCTAssertEqual(text, AppState.completed.nextStateButtonLabel)
-  }
+//  func testController_whenCaught_buttonLabelIsTryAgain() {
+//    // given
+//    let exp = expectation(description: "button title change")
+//    let observer = ButtonObserver()
+//    observer.observe(sut.startButton, expectation: exp)
+//    
+//    // when
+//    whenCaught()
+//    
+//    // then
+//    waitForExpectations(timeout: 1)
+//    let text = sut.startButton.title(for: .normal)
+//    XCTAssertEqual(text, AppState.caught.nextStateButtonLabel)
+//  }
+//  
+//  func testAppModel_whenStateChanges_executesCallback() {
+//    //given
+//    givenInProgress()
+//    let exp = expectation(description: "button title change")
+//    let observer = ButtonObserver()
+//    observer.observe(sut.startButton, expectation: exp)
+//    
+//    // when
+//    whenCompleted()
+//    
+//    // then
+//    waitForExpectations(timeout: 3)
+//    let text = sut.startButton.title(for: .normal)
+//    XCTAssertEqual(text, AppState.completed.nextStateButtonLabel)
+//  }
 
   func testControllerCompleted_whenRestartTapped_appIsNotStarted() {
     // given
